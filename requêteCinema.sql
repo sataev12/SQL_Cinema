@@ -31,6 +31,41 @@ FROM jouer
 INNER JOIN Acteurs ON jouer.Id_Acteur = Acteurs.Id_Acteur
 INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
 INNER JOIN Film ON jouer.Id_Film = Film.Id_Film
+-- Films tournés par un acteur en particulier (id_acteur) avec leur rôle et l'année de sortie 
+-- (du film le plus récent au plus ancien)
+SELECT Personne.Nom, Personne.Prenom, Role.NomPersonnage, Film.AnneSortFr
+FROM jouer
+INNER JOIN Acteurs ON jouer.Id_Acteur = Acteurs.Id_Acteur
+INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
+INNER JOIN Role ON jouer.id_role = Role.id_role
+INNER JOIN Film ON jouer.Id_Film = Film.Id_Film
+WHERE Acteurs.Id_Acteur = 1
+ORDER BY Film.AnneSortFr DESC
+-- Liste des personnes qui sont à la fois acteurs et réalisateurs
+SELECT Personne.Nom, Personne.Prenom 
+FROM Acteurs 
+INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne 
+WHERE Personne.id_personne IN (
+        SELECT Realisateur.id_personne 
+        FROM Realisateur 
+        INNER JOIN Personne ON Realisateur.id_personne = Personne.id_personne);
+-- Liste des films qui ont moins de 5 ans(classés du plus récent au plus ancien)
+SELECT Titre, AnneSortFr 
+FROM Film 
+WHERE AnneSortFr > YEAR(CURRENT_DATE) - 5 
+ORDER BY AnneSortFr DESC;
+-- Nombre d'hommes et de femmes parmis les acteurs
+SELECT Personne.Sexe,COUNT(Acteurs.id_personne) AS nbFemmeHomme
+FROM Acteurs
+INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
+GROUP BY Personne.Sexe
+-- Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu)
+SELECT Personne.Nom, Personne.Prenom, (DATEDIFF('2024-02-29', Personne.DateNaissance) / 365) AS DiffAge
+FROM Acteurs
+INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
+HAVING DiffAge > 50;
+-- Acteurs ayant joué dans 3 films ou plus
+
 
 
 
