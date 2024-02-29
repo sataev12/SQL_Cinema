@@ -26,5 +26,11 @@ INNER JOIN Personne ON Realisateur.Id_Realisateur = Personne.id_personne
 INNER JOIN Film ON Realisateur.Id_Realisateur = Film.Id_Realisateur
 GROUP BY Personne.Nom
 -- Casting d'un film en particulier (id_film) : nom, prénom des acteur + sexe
+SELECT DISTINCT Personne.Nom, Personne.Prenom, Personne.Sexe, Film.Titre
+FROM jouer
+INNER JOIN Acteurs ON jouer.Id_Acteur = Acteurs.Id_Acteur
+INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
+INNER JOIN Film ON jouer.Id_Film = Film.Id_Film
+
 
 
