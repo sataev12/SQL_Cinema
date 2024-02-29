@@ -65,6 +65,14 @@ FROM Acteurs
 INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
 HAVING DiffAge > 50;
 -- Acteurs ayant joué dans 3 films ou plus
+SELECT Personne.Nom AS ActeurJoueDans, COUNT(Acteurs.Id_Acteur) AS nbFilm
+FROM jouer
+INNER JOIN Acteurs ON jouer.Id_Acteur = Acteurs.Id_Acteur
+INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
+GROUP BY Personne.Nom
+HAVING nbFilm = 3
+
+
 
 
 
