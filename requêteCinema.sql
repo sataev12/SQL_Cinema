@@ -19,5 +19,12 @@ FROM genre_film
 INNER JOIN Genre ON genre_film.Id_Genre = Genre.Id_Genre
 INNER JOIN Film ON genre_film.Id_Film = Film.Id_Film
 GROUP BY Genre.Libelle
--- 
+-- Nombre de films par réalisateur (classés dans l'ordre décroissant)
+SELECT Personne.Nom, COUNT(Film.Titre) AS NbFilmsParRealistr
+FROM Realisateur
+INNER JOIN Personne ON Realisateur.Id_Realisateur = Personne.id_personne
+INNER JOIN Film ON Realisateur.Id_Realisateur = Film.Id_Realisateur
+GROUP BY Personne.Nom
+-- Casting d'un film en particulier (id_film) : nom, prénom des acteur + sexe
+
 
