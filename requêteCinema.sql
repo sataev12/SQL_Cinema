@@ -7,7 +7,8 @@ INNER JOIN Personne ON Realisateur.id_personne = Personne.id_personne
 -- Liste des films dont la durée excède 2h15 classés par durée (du + long au + court)
 SELECT Film.Titre, SEC_TO_TIME(Film.Duree * 60) AS Duree_formatée
 FROM Film 
-WHERE Film.Duree > 135;
+WHERE Film.Duree > 135
+ORDER BY Duree_formatée DESC;
 -- Liste des films d'un réalisateur (en précisant l'année de sortie)
 SELECT Personne.Nom, Personne.Prenom, Film.Titre, Film.AnneSortFr
 FROM Realisateur
