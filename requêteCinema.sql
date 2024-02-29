@@ -8,4 +8,16 @@ INNER JOIN Personne ON Realisateur.id_personne = Personne.id_personne
 SELECT Film.Titre, SEC_TO_TIME(Film.Duree * 60) AS Duree_formatée
 FROM Film 
 WHERE Film.Duree > 135;
+-- Liste des films d'un réalisateur (en précisant l'année de sortie)
+SELECT Personne.Nom, Personne.Prenom, Film.Titre, Film.AnneSortFr
+FROM Realisateur
+INNER JOIN Personne ON Realisateur.id_personne = Personne.id_personne
+INNER JOIN Film ON Realisateur.Id_Realisateur = Film.Id_Realisateur
+-- Nombre de film par genre (classés dans l'ordre décroissant)
+SELECT Genre.Libelle, COUNT(Film.Id_Film) AS NbFilms
+FROM genre_film
+INNER JOIN Genre ON genre_film.Id_Genre = Genre.Id_Genre
+INNER JOIN Film ON genre_film.Id_Film = Film.Id_Film
+GROUP BY Genre.Libelle
+-- 
 
