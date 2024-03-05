@@ -1,18 +1,50 @@
-<?php ob_start(); ?>
+<?php 
+    ob_start(); 
+?>
+
+<!-- Conteneur principal pour le carrousel -->
+<div class="container">
+        <!-- Élément carrousel -->
+        <div class="carousel">
+            <!-- Conteneur interne pour les diapositives -->
+            <div class="carousel-inner">
+                <!-- Première diapositive -->
+                <div class="slide">
+                    <!-- Image de la première diapositive -->
+                    <?php $filmImg = $requeteFilm->fetch();?>
+                    <img  src="<?= $filmImg['URLimg'] ?>"
+                        alt="Image 1">
+                </div>
+                <!-- Deuxième diapositive -->
+                
+            </div>
+            <!-- Conteneur pour les boutons de navigation -->
+            <div class="carousel-controls">
+                <!-- Bouton pour passer à la diapositive précédente -->
+                <button id="prev">Précédent</button>
+                <!-- Bouton pour passer à la diapositive suivante -->
+                <button id="next">Suivant</button>
+            </div>
+            <!-- Conteneur pour les points de navigation -->
+            <div class="carousel-dots"></div>
+        </div>
+    </div>
 
 <p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?>films</p>
+<a href="page.php?action=details">Voir les détails</a>
 
 <table class="uk-table uk-table-striped">
     <thead>
         <tr>TITRE</tr>
-        <tr>ANNEE SORTIE</tr>
+        <tr>Film</tr>
     </thead>
-    <tbody>
+    <tbody class="tableAffiche" >
+        
         <?php
             foreach($requete->fetchAll() as $film) { ?>
-                <tr>
+                <tr class="infoFilm" >
                     <td><?= $film["Titre"] ?></td>
-                    <td><?= $film["AnneSortFr"] ?></td>
+                    <td><img class="imgFilm" src="<?= $film["URLimg"] ?>"></td>
                 </tr>
         <?php } ?>
     </tbody>
@@ -23,4 +55,5 @@
 $titre = "Liste des films";
 $titre_secondaire = "Liste des films";
 $contenu = ob_get_clean();
-require "view/template.php";
+//Inclure le fichier
+require "view/template.php"; ?>
