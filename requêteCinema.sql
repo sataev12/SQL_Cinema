@@ -61,7 +61,7 @@ FROM Acteurs
 INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
 GROUP BY Personne.Sexe
 -- Liste des acteurs ayant plus de 50 ans (âge révolu et non révolu)
-SELECT Personne.Nom, Personne.Prenom, (DATEDIFF('2024-02-29', Personne.DateNaissance) / 365) AS DiffAge
+SELECT Personne.Nom, Personne.Prenom, ROUND((DATEDIFF('2024-02-29', Personne.DateNaissance) / 365), 0) AS DiffAge
 FROM Acteurs
 INNER JOIN Personne ON Acteurs.id_personne = Personne.id_personne
 HAVING DiffAge > 50;

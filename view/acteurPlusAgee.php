@@ -1,22 +1,23 @@
 <?php 
     ob_start(); 
-    $Realisateurs = $requete->fetchAll();
+    $acteursAgee = $requete->fetchAll();
 ?>
 
-<p class="uk-label uk-label-warning">Il y a <?= count($Realisateurs) ?> acteurs</p>
 <a href="page.php?action=details">Voir les détails</a>
 
 <table class="uk-table uk-table-striped">
     <thead>
         <tr>TITRE</tr>
         <tr>ANNEE SORTIE</tr>
+        <tr>Age</tr>
     </thead>
     <tbody>
         <?php
-            foreach($Realisateurs as $realisateur) { ?>
+            foreach($acteursAgee as $acteurAge) { ?>
                 <tr>
-                    <td><?= $realisateur["Nom"] ?></td>
-                    <td><?= $realisateur["Prenom"] ?></td>
+                    <td><?= $acteurAge["Prenom"] ?></td>
+                    <td><?= $acteurAge["Nom"] ?></td>
+                    <td><?= $acteurAge["DiffAge"] ?></td>
                 </tr>
         <?php } ?>
     </tbody>
@@ -24,8 +25,8 @@
 
 <?php
 
-$titre = "Liste des Realisateur";
-$titre_secondaire = "Liste des Realisateur";
+$titre = "Liste des Acteurs";
+$titre_secondaire = "Liste des Acteurs";
 $contenu = ob_get_clean();
 //Inclure le fichier
 require "view/template.php"; ?>
