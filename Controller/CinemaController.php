@@ -82,6 +82,8 @@ class CinemaController {
         require "view/acteurPlusAgee.php";
     }
 
+    public function nbFilmGnbFilmGenre
+
     
 
 }
