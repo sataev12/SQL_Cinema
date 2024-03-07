@@ -24,6 +24,8 @@ if(isset($_GET["action"])){
         // case "ajoutFilm": $ctrlCinema->ajoutFilm(); break;
         case "ajoutGenreForm": $ctrlCinema->ajoutGenreForm(); break;
         case "ajoutGenre": $ctrlCinema->ajoutGenre(); break;
+        case "ajoutRoleForm": $ctrlCinema->ajoutRoleForm(); break;
+        case "ajoutRole": $ctrlCinema->ajoutRole(); break;
 
         // case "detailFilm": $ctrlCinema->detailFilm($id); break;
         // case "listActeurs": $ctrlCinema->listActeurs(); break;

@@ -1,9 +1,5 @@
 <?php 
     ob_start(); 
-    // $film = $requete->fetchAll();
-    // $realistr = $requete->fetchAll(); 
-    //     var_dump($realistr);
-    //     die;
 ?>
 
 <h1>Ajouter un Genre</h1>

@@ -179,6 +179,30 @@ class CinemaController {
         var_dump("hello");
     }
 
+    public function ajoutRoleForm() {
+
+        require "view/ajoutRoleForm.php";
+    }
+
+    public function ajoutRole() {
+        $nom = '';
+        if(isset($_POST['submit'])) {
+            //verif
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
+        }if($nom){
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare("
+            INSERT INTO Role(NomPersonnage)
+            VALUES (:nom)
+            ");
+            $requete->execute([
+                ':nom' => $nom
+            ]);
+        }
+    }
+
+
+
     
 
 }
