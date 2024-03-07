@@ -20,6 +20,10 @@ if(isset($_GET["action"])){
         case "acteurPlusAgee": $ctrlCinema->acteurPlusAgee(); break;
         case "nbFilmGenre": $ctrlCinema->nbFilmGenre(); break;
         case "lesPlusLong": $ctrlCinema->lesPlusLong(); break;
+        // case "ajoutFilmForm": $ctrlCinema->ajoutFilmForm(); break;
+        // case "ajoutFilm": $ctrlCinema->ajoutFilm(); break;
+        case "ajoutGenreForm": $ctrlCinema->ajoutGenreForm(); break;
+        case "ajoutGenre": $ctrlCinema->ajoutGenre(); break;
 
         // case "detailFilm": $ctrlCinema->detailFilm($id); break;
         // case "listActeurs": $ctrlCinema->listActeurs(); break;

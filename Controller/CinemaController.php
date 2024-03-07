@@ -107,6 +107,78 @@ class CinemaController {
         require "view/lesPlusLong.php";
     }
 
+    // public function ajoutFilmForm() {
+    //     $pdo = Connect::seConnecter();
+    //     $requete = $pdo->prepare("
+    //     SELECT Personne.Nom, Personne.Prenom
+    //     FROM Realisateur
+    //     INNER JOIN Personne ON Realisateur.id_personne = Personne.id_personne;
+    //     ");
+    //     $requete->execute();
+    //     require "view/ajoutFilmForm.php";
+        
+
+    // }
+
+
+    // public function ajoutFilm(){
+    //     // $pdo = Connect::seConnecter();
+    //     // $requete = $pdo->prepare("
+    //     // ");
+    //     if (isset($_POST['submit'])) {
+    //         // Verifications des champs de form
+    //         $titre = filter_input(INPUT_POST, "titre", FILTER_SANITIZE_SPECIAL_CHARS);
+    //         $AnneSortFr = filter_input(INPUT_POST, "AnneSortFr", FILTER_VALIDATE_INT);
+    //         $Duree = filter_input(INPUT_POST, "Duree", FILTER_VALIDATE_INT);
+    //         $Synopsis = filter_input(INPUT_POST, "Synopsis", FILTER_SANITIZE_SPECIAL_CHARS);
+    //         $Note = filter_input(INPUT_POST, "Note", FILTER_VALIDATE_INT);
+    //         $Affiche = filter_input(INPUT_POST, "Affiche", FILTER_SANITIZE_SPECIAL_CHARS);
+    //     }
+    //     if ($titre && $AnneSortFr & $Duree & $Synopsis & $Note & $Affiche) {
+    //         $pdo = Connect::seConnecter();
+    //         $requete = $pdo->prepare("
+    //         INSERT INTO Film(Titre, AnneSortFr, Duree, Synopsis, Note, Affiche)
+    //         VALUES ('Max', '2010', '110', 'un film de test', '3', 'Affiche de mont film de test')
+    //         ");
+    //     $requete->execute([
+    //         'titre' => $titre,
+    //         'AnneSortFr' => $AnneSortFr,
+    //         'Duree' => $Duree,
+    //         'Synopsis' => $Synopsis,
+    //         'Note' => $Note,
+    //         'Affiche' => $Affiche
+    //     ]);
+    //     } 
+    //     var_dump("hello");
+    //     die();
+    // }
+
+    public function ajoutGenreForm() {
+        
+        require "view/ajoutGenreForm.php";
+        
+
+    }
+
+    public function ajoutGenre() {
+        $Libelle = '';
+        if (isset($_POST['submit'])) {
+                    // Verifications des champs de form
+                    $Libelle = filter_input(INPUT_POST, "Libelle", FILTER_SANITIZE_SPECIAL_CHARS);
+                }
+                if ($Libelle) {
+                    $pdo = Connect::seConnecter();
+                    $requete = $pdo->prepare("
+                    INSERT INTO Genre(Libelle)
+                    VALUES (:Libelle)
+                    ");
+                    $requete->execute([
+                        ':Libelle' => $Libelle
+                    ]);
+                } 
+        var_dump("hello");
+    }
+
     
 
 }
