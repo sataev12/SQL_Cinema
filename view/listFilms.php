@@ -31,7 +31,7 @@
     </div>
 
 <p class="uk-label uk-label-warning">Il y a <?= $requete->rowCount() ?>films</p>
-<a href="page.php?action=details">Voir les détails</a>
+<a href="index.php?action=detailsFilm">Voir les détails</a>
 
 <table class="uk-table uk-table-striped">
     <thead>
@@ -41,10 +41,12 @@
     <tbody class="tableAffiche" >
         
         <?php
-            foreach($requete->fetchAll() as $film) { ?>
+            foreach($requete->fetchAll() as $Id => $film) { ?>
                 <tr class="infoFilm" >
                     <td><?= $film["Titre"] ?></td>
                     <td><img class="imgFilm" src="<?= $film["URLimg"] ?>"></td>
+                    <td>.<a href='index.php?action=detailsFilm&id=<?= $film['Id_Film'] ?>'>Details de film</a></td>
+                    
                 </tr>
         <?php } ?>
     </tbody>

@@ -203,7 +203,7 @@ class CinemaController {
 
     public function ajoutPersonneForm() {
 
-        require "view";
+        require "view/ajoutPersonneForm.php";
     }
     public function ajoutPersonne() {
         $nom = '';
@@ -215,16 +215,47 @@ class CinemaController {
             $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
             $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
             $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
-            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_VALIDATE_INT);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_SANITIZE_SPECIAL_CHARS);
+            // var_dump($dateNaissance);die;
         }if($nom && $prenom && $sexe && $dateNaissance) {
             $pdo = Connect::seConnecter();
             $requete = $pdo->prepare("
-                
+            INSERT INTO Personne(Nom, Prenom, Sexe, DateNaissance)
+            VALUES(:nom, :prenom, :sexe, :dateNaissance);
             ");
+            $requete->execute([
+            ':nom' => $nom,
+            ':prenom' => $prenom,
+            ':sexe' => $sexe,
+            ':dateNaissance' => $dateNaissance
+            ]);
         }
     }
 
+    public function detailsFilm($id) {
+        
 
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare("
+            SELECT Titre, AnneSortFr, Duree, Synopsis, Note, Affiche, Personne.Nom, Personne.Prenom, URLimg
+            FROM `Film`
+            INNER JOIN Realisateur ON Film.Id_Film = Realisateur.Id_Realisateur
+            INNER JOIN Personne ON Realisateur.id_personne = Personne.id_personne
+            WHERE Film.Id_Film = :id;
+            ");
+            $requete->execute([
+                ':id' => $id
+            ]);
+
+
+            require "view/detailsFilm.php";
+        
+
+        
+    }
+
+    
+    
 
     
 
