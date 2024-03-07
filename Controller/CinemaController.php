@@ -201,6 +201,29 @@ class CinemaController {
         }
     }
 
+    public function ajoutPersonneForm() {
+
+        require "view";
+    }
+    public function ajoutPersonne() {
+        $nom = '';
+        $prenom = '';
+        $sexe = '';
+        $dateNaissance = '';
+        if(isset($_POST['submit'])) {
+            //Verif
+            $nom = filter_input(INPUT_POST, "nom", FILTER_SANITIZE_SPECIAL_CHARS);
+            $prenom = filter_input(INPUT_POST, "prenom", FILTER_SANITIZE_SPECIAL_CHARS);
+            $sexe = filter_input(INPUT_POST, "sexe", FILTER_SANITIZE_SPECIAL_CHARS);
+            $dateNaissance = filter_input(INPUT_POST, "dateNaissance", FILTER_VALIDATE_INT);
+        }if($nom && $prenom && $sexe && $dateNaissance) {
+            $pdo = Connect::seConnecter();
+            $requete = $pdo->prepare("
+                
+            ");
+        }
+    }
+
 
 
     
