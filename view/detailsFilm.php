@@ -10,8 +10,19 @@
     <tbody>
         <?php
         ?>    
-                    <img src="<?= $film["URLimg"] ?>" alt="Photo de film">
+            <div class="Film-detail">
                     <h1><?= $film["Titre"] ?></h1>
+                    <img src="<?= $film["URLimg"] ?>" alt="Photo de film">
+                    <div class="detailColonne">
+                        <p>Anné de sortie : <?= $film["AnneSortFr"] ?></p>
+                        <p>Avis <?= $film["Note"] ?>/5</p>
+                        <p>Realisateur : <a href=""> <?= $film["Nom"] . " " . $film["Prenom"] ?> </a></p>
+                        <p><?= $film["Affiche"] ?></p> 
+                        <p><?= $film["Synopsis"] ?></p>
+                        
+                    </div>
+            </div>
+                    
        
     </tbody>
 </table>
