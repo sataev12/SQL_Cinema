@@ -233,8 +233,6 @@ class CinemaController {
     }
 
     public function detailsFilm($id) {
-        
-
             $pdo = Connect::seConnecter();
             $requete = $pdo->prepare("
             SELECT Titre, AnneSortFr, Duree, Synopsis, Note, Affiche, Personne.Nom, Personne.Prenom, URLimg
@@ -246,12 +244,23 @@ class CinemaController {
             $requete->execute([
                 ':id' => $id
             ]);
-
-
             require "view/detailsFilm.php";
-        
+    }
 
-        
+    public function acceuil() {
+        $pdo = Connect::seConnecter();
+        $requete = $pdo->prepare("
+        SELECT *
+        FROM Film
+        ");
+        $requete->execute();
+        $requeteFilm = $pdo->prepare("
+        SELECT URLimg
+        FROM Film
+        WHERE id_film = 1
+        ");
+        $requeteFilm->execute();
+        require "view/acceuil.php";
     }
 
     
